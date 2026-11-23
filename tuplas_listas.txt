@@ -1,0 +1,172 @@
+USO DE TUPLAS Y LISTAS EN PYTHON
+=================================
+
+Este archivo explica de forma sencilla que son las listas y las tuplas en
+Python, en que se diferencian, como se crean y como se usan, con ejemplos
+practicos.
+
+
+1. LISTAS
+---------
+
+Una lista es una coleccion ordenada y MUTABLE de elementos. Puede contener
+cualquier tipo de dato (numeros, textos, otras listas, etc.) y se puede
+modificar despues de creada: agregar, quitar o cambiar elementos.
+
+Sintaxis: se escriben entre corchetes [], separados por comas.
+
+Ejemplo:
+
+    numeros = [1, 2, 3, 4, 5]
+    frutas = ["manzana", "banana", "cereza"]
+    mixta = [10, "hola", 3.14, True]
+
+Operaciones comunes con listas:
+
+    # Acceder a un elemento por indice (empieza en 0)
+    print(frutas[0])        # manzana
+
+    # Modificar un elemento
+    frutas[1] = "uva"       # ["manzana", "uva", "cereza"]
+
+    # Agregar elementos al final
+    frutas.append("naranja")
+
+    # Insertar en una posicion especifica
+    frutas.insert(1, "kiwi")
+
+    # Eliminar por valor
+    frutas.remove("banana")
+
+    # Eliminar por indice y devolver el valor
+    ultimo = frutas.pop()
+
+    # Eliminar por indice sin devolver nada
+    del frutas[0]
+
+    # Longitud de la lista
+    len(frutas)
+
+    # Ver si un elemento esta en la lista
+    "manzana" in frutas
+
+    # Concatenar listas
+    lista_combinada = numeros + [6, 7]
+
+    # Repetir una lista
+    duplicada = [1, 2] * 3    # [1, 2, 1, 2, 1, 2]
+
+    # Ordenar (modifica la lista original)
+    numeros.sort()
+
+    # Invertir (modifica la lista original)
+    numeros.reverse()
+
+    # Copiar una lista (para no modificar la original)
+    copia = numeros.copy()
+    # o: copia = numeros[:]
+
+
+2. TUPLAS
+---------
+
+Una tupla es una coleccion ordenada e INMUTABLE de elementos. Una vez creada,
+no se puede agregar, quitar ni cambiar ninguno de sus elementos. Las tuplas
+se usan habitualmente para datos que no deben cambiar (por ejemplo, coordenadas,
+configuraciones, registros de base de datos).
+
+Sintaxis: se escriben entre parentesis (), separados por comas.
+
+Ejemplo:
+
+    punto = (10, 20)
+    colores = ("rojo", "verde", "azul")
+    persona = ("Ana", 25, "Madrid")
+
+Nota: para crear una tupla con UN SOLO elemento es obligatoria la coma:
+
+    tupla_unica = (5,)          # tupla con un elemento
+    no_es_tupla = (5)           # esto es solo el numero 5
+
+Operaciones con tuplas:
+
+    # Acceder a un elemento por indice
+    print(punto[0])     # 10
+
+    # Longitud
+    len(colores)
+
+    # Ver si un elemento esta en la tupla
+    "rojo" in colores
+
+    # Concatenar tuplas
+    mas_colores = colores + ("amarillo",)
+
+    # Repetir tuplas
+    doble = ("si", "no") * 2
+
+    # Desempaquetado (asignar a varias variables)
+    x, y = punto        # x = 10, y = 20
+
+    # Convertir lista a tupla y viceversa
+    tupla_de_lista = tuple([1, 2, 3])     # (1, 2, 3)
+    lista_de_tupla = list(punto)          # [10, 20]
+
+Como las tuplas son inmutables, NO tienen metodos como append(), remove(),
+pop() ni sort(). Si necesitas cambiar algo, debes convertir la tupla en lista,
+hacer el cambio y volverla a convertir en tupla.
+
+
+3. DIFERENCIAS PRINCIPALES
+--------------------------
+
+| Caracteristica   | Lista                        | Tupla                        |
+|------------------|------------------------------|------------------------------|
+| Mutabilidad      | Mutable (se puede modificar) | Inmutable (no se modifica)   |
+| Sintaxis         | Corchetes []                 | Parentesis ()                |
+| Rendimiento      | Ligeramente mas lenta        | Ligeramente mas rapida       |
+| Uso tipico       | Colecciones que cambian      | Datos fijos o registros      |
+| Metodos          | append, remove, pop, sort... | Solo count e index           |
+| Puede ser clave de diccionario | No                       | Si (si sus elementos son inmutables) |
+
+
+4. CUANDO USAR UNA Y CUANDO LA OTRA
+-----------------------------------
+
+Usa LISTA cuando:
+- Necesites agregar, eliminar o modificar elementos despues.
+- El orden y la cantidad de datos pueden cambiar durante la ejecucion.
+- Ejemplo: lista de productos en un carrito de compras, lista de tareas pendientes.
+
+Usa TUPLA cuando:
+- Los datos no deben cambiar (son constantes o registros fijos).
+- Quieres garantizar que nadie modifique la coleccion por accidente.
+- Necesitas usar la coleccion como clave de un diccionario.
+- Ejemplo: coordenadas geograficas (latitud, longitud), configuracion de un programa,
+  dias de la semana.
+
+
+5. EJEMPLO PRACTICO COMPLETO
+----------------------------
+
+    # Lista: carrito de compras (cambia constantemente)
+    carrito = ["manzana", "pan"]
+    carrito.append("leche")
+    carrito.remove("pan")
+    print("Carrito:", carrito)   # ['manzana', 'leche']
+
+    # Tupla: coordenadas de una ciudad (no cambian)
+    madrid = (40.4168, -3.7038)
+    latitud, longitud = madrid
+    print("Madrid esta en:", latitud, longitud)
+
+    # Lista dentro de tupla y tupla dentro de lista (estructuras mixtas)
+    contactos = [
+        ("Ana", "ana@email.com"),
+        ("Luis", "luis@email.com"),
+    ]
+    for nombre, email in contactos:
+        print(nombre, "->", email)
+
+Con esto ya sabes crear, modificar y elegir entre listas y tuplas segun
+lo que necesites en tus programas de Python.
